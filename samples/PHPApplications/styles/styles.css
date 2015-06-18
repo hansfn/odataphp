@@ -1,0 +1,333 @@
+﻿*
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body 
+{
+	background-color:#1982BA;
+	/* background: url(background2.png) repeat fixed; */
+	font-family: Georgia, Palatino;
+}
+
+p
+{
+	margin: 10px 0px 10px 0px;
+	font-size: 10pt;
+	line-height: 25px;
+}
+
+img
+{
+	padding: 2px;
+	border: 1px solid #1982BA;
+	margin: 4px 4px 4px 0px;
+}
+
+/* Lists */
+ul
+{
+	margin: 10px 0px 0px 15px;
+}
+
+li
+{
+	list-style: disc;
+	font-size: 10pt;
+	line-height: 25px;
+	
+}
+
+
+/* links */
+a
+{
+	text-decoration: none;
+	color: #1982BA;
+}
+
+a:hover
+{
+	text-decoration:none;
+	color: #333;
+}
+
+a.navLinks
+{
+	color: #fff;
+	font-size: 10pt;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Palatino;
+}
+
+a.navLinks:hover
+{
+	color: #ccc;
+}
+
+/* Used inside of the SectionHeader Div Only */
+h2, h3, h4
+{
+	font-size: 12pt;
+	font-family: "Trebuchet MS", Palatino;
+}
+
+h2
+{
+	color: #fff;
+	font-weight: bold;	
+	margin-left: 15px;
+}
+
+/* Main content area, top most header */
+h3
+{
+	color: #D54E21;
+	margin-top: 15px;
+}
+
+h4
+{
+	margin-top: 10px;
+	margin-bottom: 5px;
+	border-bottom:1px #D54E21 solid;
+}
+
+h5
+{
+	font-family: Georgia, Palatino;
+	color: #333;
+}
+
+/* Page Header Title/Logo */
+.title
+{
+	font-family: "Trebuchet MS", Palatino;
+	font-size: 24pt;
+	font-weight: bold;
+	color: #fff;
+	margin-left: 15px;
+}
+
+/* Page Background */
+#backgroundStyle
+{
+	left: 0px;
+	position: absolute;
+	width: 100%;
+	height: 500px;
+	border-bottom: thin gray groove;
+	background-color: #333;
+	z-index: 1;
+}
+
+/* Content Area Divs */
+#pageBox
+{
+	width: 795px;
+	position: relative;
+	z-index:2;
+	margin:auto; 
+	background:#1982BA; 
+	height: 100%;
+}
+
+#header
+{
+	border-top: 5px #333333 solid;
+	padding: 3px 3px 0px 3px;
+	height: 75px;
+	background: url(background.jpg) repeat fixed;
+}
+
+#headerTitle
+{
+	margin-left: 2px;
+	margin-top: 2px;
+	float: left;
+}
+
+#sectionHeader
+{
+	background-color: #D54E21;
+	height: 25px;
+	display: block;
+	padding: 0px 3px 0px 3px;
+}
+
+
+/* Page Content */
+#content
+{
+	width: 775px;
+	min-height: 500px;
+	height: 100%;
+	padding: 3px 5px 15px 15px;
+	position: relative;
+	z-index: 5;
+	background-color: #fff;
+}
+
+
+/* Navigation Styles */
+
+#navigationLinks
+{
+	text-align: left;
+	width: 100%;
+	position: relative;
+	top: 15px;
+}
+
+#navigationLinks ul
+{
+	display: inline;
+}
+
+#navigationLinks ul li
+{
+	list-style: none;
+	display: inline;
+	padding: 2px 15px 5px;
+}
+
+#navigationLinks ul li.current
+{
+	display: inline;
+	list-style: none;
+	background-color: #D54E21;
+}
+
+/* Page Left hand side navigation */
+#pageLeftNav
+{
+	width: 150px;
+	min-height: 200px;
+	height: 100%;
+	float: left;
+	margin-right: 10px;
+	margin-top: 15px;
+	position: relative;
+}
+
+#pageLeftNav ul
+{
+	margin-top: 15px;
+	margin-left: 0px;
+	list-style: none;
+}
+
+#pageLeftNav ul li
+{
+	list-style: none;
+	margin-bottom: 10px;
+	border-bottom: thin #808080 dotted;
+}
+
+#pageLeftNav ul li a
+{
+	color: #666;
+	font-size: 10pt;
+	font-family: "Trebuchet MS", Palatino;
+	line-height: 15px;
+}
+
+#pageLeftNav ul li a:hover
+{
+	color: #1982BA;
+}
+
+#pageLeftNav ul li a.current
+{
+	color: #1982BA;
+}
+
+/* Page right - main content area */
+#pageRight
+{
+	width: 600px;
+	height: 100%;
+	margin-top: 15px;
+	float: right;
+}
+
+#clear
+{
+	clear: both;
+}
+
+/* Intra-Tutorial nav styles */
+#intraTutorialNav
+{
+	margin-top: 15px;
+	text-align: left; 
+	width: 585px;
+	background-color: #333;
+	text-align: right;
+}
+
+#intraTutorialNav a
+{
+	font-family: "Trebuchet MS", Palatino;
+	color: #1982BA;
+}
+
+#intraTutorialNav a:hover
+{
+	font-family: "Trebuchet MS", Palatino;
+	color: #fff;
+}
+
+#intraTutorialNav ul li
+{
+	list-style: none;
+	display: inline;
+	padding: 2px 15px 5px;
+}
+
+#intraTutorialNav ul li a.current
+{
+	display: inline;
+	list-style: none;
+	color: #fff;
+}
+
+/* Footer */
+#footer
+{
+	font-family: "Trebuchet MS", Palatino;
+	color: #fff;
+	font-size: 8pt;
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	background: url(background.jpg) repeat fixed;
+	display: block;
+	position: relative;
+	z-index: 6;
+}
+
+/* Text Styles */
+.code
+{
+	font: bold 10pt/normal 'Courier New';
+	color: #003399;
+}
+
+.highlight
+{
+	font-weight: bold;
+}
+
+.filename
+{
+	font-style:italic;
+}
+
+.caption
+{
+	color: #333;
+	font-size: 8pt;
+	font-family: "Trebuchet MS", Palatino;
+}

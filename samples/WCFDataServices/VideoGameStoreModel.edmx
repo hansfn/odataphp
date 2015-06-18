@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VideoGameStoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="VideoGameStoreModelStoreContainer">
+          <EntitySet Name="Accessory" EntityType="VideoGameStoreModel.Store.Accessory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Console" EntityType="VideoGameStoreModel.Store.Console" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="VideoGameStoreModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Game" EntityType="VideoGameStoreModel.Store.Game" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="VideoGameStoreModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductType" EntityType="VideoGameStoreModel.Store.ProductType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Purchase" EntityType="VideoGameStoreModel.Store.Purchase" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PurchaseItem" EntityType="VideoGameStoreModel.Store.PurchaseItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Supplier" EntityType="VideoGameStoreModel.Store.Supplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="VideoGameStoreModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Accessory_Product" Association="VideoGameStoreModel.Store.FK_Accessory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Console_Product" Association="VideoGameStoreModel.Store.FK_Console_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Console" EntitySet="Console" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Product" Association="VideoGameStoreModel.Store.FK_Game_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="VideoGameStoreModel.Store.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="VideoGameStoreModel.Store.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Customer" Association="VideoGameStoreModel.Store.FK_Purchase_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseItem_Product" Association="VideoGameStoreModel.Store.FK_PurchaseItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseItem" EntitySet="PurchaseItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseItem_Purchase" Association="VideoGameStoreModel.Store.FK_PurchaseItem_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseItem" EntitySet="PurchaseItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accessory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="SystemName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Console">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DriveType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DriveSize" Type="float" Nullable="false" />
+          <Property Name="ConsoleDetails" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerDetails" Type="ntext" />
+          <Property Name="CustomerMembershipId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="SystemName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Rating" Type="nvarchar" MaxLength="100" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Publisher" Type="nvarchar" MaxLength="100" />
+          <Property Name="Developer" Type="nvarchar" MaxLength="100" />
+          <Property Name="RatingUrl" Type="nvarchar" MaxLength="250" />
+          <Property Name="PlayerInfo" Type="nvarchar" MaxLength="100" />
+          <Property Name="GameVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductDescription" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="ListPrice" Type="float" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="ReleaseDate" Type="datetime" />
+          <Property Name="ProductImageUrl" Type="nvarchar" MaxLength="250" />
+          <Property Name="ListPriceCurrency" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ProductVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProductTypeDescription" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+          <Property Name="Details" Type="ntext" />
+        </EntityType>
+        <EntityType Name="PurchaseItem">
+          <Key>
+            <PropertyRef Name="PurchaseItemID" />
+          </Key>
+          <Property Name="PurchaseItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SupplierAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="SupplierPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupplierVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Accessory_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="1" />
+          <End Role="Accessory" Type="VideoGameStoreModel.Store.Accessory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Console_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="1" />
+          <End Role="Console" Type="VideoGameStoreModel.Store.Console" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Console">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="1" />
+          <End Role="Game" Type="VideoGameStoreModel.Store.Game" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="VideoGameStoreModel.Store.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Supplier" Type="VideoGameStoreModel.Store.Supplier" Multiplicity="0..1" />
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Customer">
+          <End Role="Customer" Type="VideoGameStoreModel.Store.Customer" Multiplicity="1" />
+          <End Role="Purchase" Type="VideoGameStoreModel.Store.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseItem_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Store.Product" Multiplicity="1" />
+          <End Role="PurchaseItem" Type="VideoGameStoreModel.Store.PurchaseItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchaseItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseItem_Purchase">
+          <End Role="Purchase" Type="VideoGameStoreModel.Store.Purchase" Multiplicity="1" />
+          <End Role="PurchaseItem" Type="VideoGameStoreModel.Store.PurchaseItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="PurchaseID" />
+            </Principal>
+            <Dependent Role="PurchaseItem">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VideoGameStoreModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="VideoGameStoreEntities">
+          <EntitySet Name="Accessory" EntityType="VideoGameStoreModel.Accessory" />
+          <EntitySet Name="Console" EntityType="VideoGameStoreModel.Console" />
+          <EntitySet Name="Customer" EntityType="VideoGameStoreModel.Customer" />
+          <EntitySet Name="Game" EntityType="VideoGameStoreModel.Game" />
+          <EntitySet Name="Product" EntityType="VideoGameStoreModel.Product" />
+          <EntitySet Name="ProductType" EntityType="VideoGameStoreModel.ProductType" />
+          <EntitySet Name="Purchase" EntityType="VideoGameStoreModel.Purchase" />
+          <EntitySet Name="PurchaseItem" EntityType="VideoGameStoreModel.PurchaseItem" />
+          <EntitySet Name="Supplier" EntityType="VideoGameStoreModel.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="VideoGameStoreModel.sysdiagrams" />
+          <AssociationSet Name="FK_Accessory_Product" Association="VideoGameStoreModel.FK_Accessory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Console_Product" Association="VideoGameStoreModel.FK_Console_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Console" EntitySet="Console" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Customer" Association="VideoGameStoreModel.FK_Purchase_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Product" Association="VideoGameStoreModel.FK_Game_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="VideoGameStoreModel.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Supplier" Association="VideoGameStoreModel.FK_Product_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseItem_Product" Association="VideoGameStoreModel.FK_PurchaseItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseItem" EntitySet="PurchaseItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseItem_Purchase" Association="VideoGameStoreModel.FK_PurchaseItem_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseItem" EntitySet="PurchaseItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accessory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_Accessory_Product" FromRole="Accessory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Console">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DriveType" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DriveSize" Type="Double" Nullable="false" />
+          <Property Name="ConsoleDetails" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_Console_Product" FromRole="Console" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerDetails" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerMembershipId" Type="Guid" />
+          <NavigationProperty Name="Purchase" Relationship="VideoGameStoreModel.FK_Purchase_Customer" FromRole="Customer" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Rating" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Genre" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Publisher" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Developer" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RatingUrl" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="PlayerInfo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="GameVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_Game_Product" FromRole="Game" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ListPrice" Type="Double" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" />
+          <Property Name="ProductImageUrl" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ListPriceCurrency" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ProductVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" />
+          <NavigationProperty Name="Accessory" Relationship="VideoGameStoreModel.FK_Accessory_Product" FromRole="Product" ToRole="Accessory" />
+          <NavigationProperty Name="Console" Relationship="VideoGameStoreModel.FK_Console_Product" FromRole="Product" ToRole="Console" />
+          <NavigationProperty Name="Game" Relationship="VideoGameStoreModel.FK_Game_Product" FromRole="Product" ToRole="Game" />
+          <NavigationProperty Name="ProductType" Relationship="VideoGameStoreModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Supplier" Relationship="VideoGameStoreModel.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+          <NavigationProperty Name="PurchaseItem" Relationship="VideoGameStoreModel.FK_PurchaseItem_Product" FromRole="Product" ToRole="PurchaseItem" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ProductTypeDescription" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Customer" Relationship="VideoGameStoreModel.FK_Purchase_Customer" FromRole="Purchase" ToRole="Customer" />
+          <NavigationProperty Name="PurchaseItem" Relationship="VideoGameStoreModel.FK_PurchaseItem_Purchase" FromRole="Purchase" ToRole="PurchaseItem" />
+        </EntityType>
+        <EntityType Name="PurchaseItem">
+          <Key>
+            <PropertyRef Name="PurchaseItemID" />
+          </Key>
+          <Property Name="PurchaseItemID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_PurchaseItem_Product" FromRole="PurchaseItem" ToRole="Product" />
+          <NavigationProperty Name="Purchase" Relationship="VideoGameStoreModel.FK_PurchaseItem_Purchase" FromRole="PurchaseItem" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" />
+          <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SupplierAddress" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="SupplierPhone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SupplierVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" />
+          <NavigationProperty Name="Product" Relationship="VideoGameStoreModel.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Accessory_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="1" />
+          <End Role="Accessory" Type="VideoGameStoreModel.Accessory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Console_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="1" />
+          <End Role="Console" Type="VideoGameStoreModel.Console" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Console">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Customer">
+          <End Role="Customer" Type="VideoGameStoreModel.Customer" Multiplicity="1" />
+          <End Role="Purchase" Type="VideoGameStoreModel.Purchase" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Game_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="1" />
+          <End Role="Game" Type="VideoGameStoreModel.Game" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="VideoGameStoreModel.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Product_Supplier">
+          <End Role="Supplier" Type="VideoGameStoreModel.Supplier" Multiplicity="0..1" />
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PurchaseItem_Product">
+          <End Role="Product" Type="VideoGameStoreModel.Product" Multiplicity="1" />
+          <End Role="PurchaseItem" Type="VideoGameStoreModel.PurchaseItem" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PurchaseItem_Purchase">
+          <End Role="Purchase" Type="VideoGameStoreModel.Purchase" Multiplicity="1" />
+          <End Role="PurchaseItem" Type="VideoGameStoreModel.PurchaseItem" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="VideoGameStoreModelStoreContainer" CdmEntityContainer="VideoGameStoreEntities">
+          <EntitySetMapping Name="Accessory">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Accessory)">
+              <MappingFragment StoreEntitySet="Accessory">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Console">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Console)">
+              <MappingFragment StoreEntitySet="Console">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DriveType" ColumnName="DriveType" />
+                <ScalarProperty Name="DriveSize" ColumnName="DriveSize" />
+                <ScalarProperty Name="ConsoleDetails" ColumnName="ConsoleDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Customer)">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerDetails" ColumnName="CustomerDetails" />
+                <ScalarProperty Name="CustomerMembershipId" ColumnName="CustomerMembershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Game">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Game)">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Developer" ColumnName="Developer" />
+                <ScalarProperty Name="RatingUrl" ColumnName="RatingUrl" />
+                <ScalarProperty Name="PlayerInfo" ColumnName="PlayerInfo" />
+                <ScalarProperty Name="GameVersion" ColumnName="GameVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Product)">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
+                <ScalarProperty Name="ListPriceCurrency" ColumnName="ListPriceCurrency" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.ProductType)">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="ProductTypeDescription" ColumnName="ProductTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Purchase)">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseItem">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.PurchaseItem)">
+              <MappingFragment StoreEntitySet="PurchaseItem">
+                <ScalarProperty Name="PurchaseItemID" ColumnName="PurchaseItemID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.Supplier)">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+                <ScalarProperty Name="SupplierPhone" ColumnName="SupplierPhone" />
+                <ScalarProperty Name="SupplierVersion" ColumnName="SupplierVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IsTypeOf(VideoGameStoreModel.sysdiagrams)">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Accessory_Product" TypeName="VideoGameStoreModel.FK_Accessory_Product" StoreEntitySet="Accessory">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+            <EndProperty Name="Accessory">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Console_Product" TypeName="VideoGameStoreModel.FK_Console_Product" StoreEntitySet="Console">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+            <EndProperty Name="Console">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Purchase_Customer" TypeName="VideoGameStoreModel.FK_Purchase_Customer" StoreEntitySet="Purchase">
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+            </EndProperty>
+            <EndProperty Name="Purchase">
+              <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Game_Product" TypeName="VideoGameStoreModel.FK_Game_Product" StoreEntitySet="Game">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+            <EndProperty Name="Game">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Product_ProductType" TypeName="VideoGameStoreModel.FK_Product_ProductType" StoreEntitySet="Product">
+            <EndProperty Name="ProductType">
+              <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Product_Supplier" TypeName="VideoGameStoreModel.FK_Product_Supplier" StoreEntitySet="Product">
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+            <Condition ColumnName="SupplierID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PurchaseItem_Product" TypeName="VideoGameStoreModel.FK_PurchaseItem_Product" StoreEntitySet="PurchaseItem">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            </EndProperty>
+            <EndProperty Name="PurchaseItem">
+              <ScalarProperty Name="PurchaseItemID" ColumnName="PurchaseItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PurchaseItem_Purchase" TypeName="VideoGameStoreModel.FK_PurchaseItem_Purchase" StoreEntitySet="PurchaseItem">
+            <EndProperty Name="Purchase">
+              <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+            </EndProperty>
+            <EndProperty Name="PurchaseItem">
+              <ScalarProperty Name="PurchaseItemID" ColumnName="PurchaseItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="VideoGameStoreModel">
+        <EntityTypeShape EntityType="VideoGameStoreModel.Accessory" Width="1.5" PointX="5.25" PointY="2.625" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Console" Width="1.5" PointX="5.25" PointY="4.875" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Customer" Width="1.5" PointX="0.75" PointY="9.375" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Game" Width="1.5" PointX="5.25" PointY="10" Height="2.5783902994791674" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Product" Width="1.5" PointX="3" PointY="4.625" Height="3.2357796223958335" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.ProductType" Width="1.5" PointX="0.75" PointY="5.5" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Purchase" Width="1.5" PointX="3" PointY="9.375" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.PurchaseItem" Width="1.5" PointX="5.25" PointY="7.375" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.Supplier" Width="1.5" PointX="0.75" PointY="2.375" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGameStoreModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" Height="1.7566536458333333" IsExpanded="true" />
+        <AssociationConnector Association="VideoGameStoreModel.FK_Accessory_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="4.625" />
+          <ConnectorPoint PointX="3.75" PointY="3.3389794921875" />
+          <ConnectorPoint PointX="5.25" PointY="3.3389794921875" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_Console_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.7533268229166667" />
+          <ConnectorPoint PointX="5.25" PointY="5.7533268229166667" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_Purchase_Customer" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.253326822916666" />
+          <ConnectorPoint PointX="3" PointY="10.253326822916666" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_Game_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.83830522265625" />
+          <ConnectorPoint PointX="4.875" PointY="6.83830522265625" />
+          <ConnectorPoint PointX="4.875" PointY="11.289195149739584" />
+          <ConnectorPoint PointX="5.25" PointY="11.289195149739584" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_Product_ProductType" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.2961531575520837" />
+          <ConnectorPoint PointX="3" PointY="6.2961531575520837" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_Product_Supplier" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.85698974609375" />
+          <ConnectorPoint PointX="3.3437475" PointY="2.85698974609375" />
+          <ConnectorPoint PointX="3.3437475" PointY="4.625" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_PurchaseItem_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.6178898111979167" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="7.6178898111979159" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="7.6178898111979167" />
+          <ConnectorPoint PointX="5.25" PointY="7.6178898111979167" /></AssociationConnector>
+        <AssociationConnector Association="VideoGameStoreModel.FK_PurchaseItem_Purchase" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="9.375" />
+          <ConnectorPoint PointX="3.75" PointY="8.33550048828125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.33550048828125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.33550048828125" />
+          <ConnectorPoint PointX="5.25" PointY="8.33550048828125" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

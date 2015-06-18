@@ -66,6 +66,7 @@ document under the \docs directory.
 Directorty Structure
 ====================
 
+```
 |-- PHPDataSvcUtil.php [Proxy generation tool]
 |
 |-- framework
@@ -91,3 +92,4 @@ Directorty Structure
         |
         |--WebUtil     [Utility files for handling normal and batch http request-response]
         |
+```

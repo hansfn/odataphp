@@ -14,15 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-require_once 'Resource\Messages.php';
-require_once 'Common\Collection.php';
-require_once 'WebUtil\HttpVerb.php';
-require_once 'WebUtil\HttpRequest.php';
-require_once 'WebUtil\Microsoft_Http_Response.php';
-require_once 'WebUtil\HttpResponse.php';
-require_once 'Common\HttpProxy.php';
-require_once 'Exception\ACSUtilException.php';
-require_once 'Exception\InvalidOperation.php';
+require_once 'Resource/Messages.php';
+require_once 'Common/Collection.php';
+require_once 'WebUtil/HttpVerb.php';
+require_once 'WebUtil/HttpRequest.php';
+require_once 'WebUtil/Microsoft_Http_Response.php';
+require_once 'WebUtil/HttpResponse.php';
+require_once 'Common/HttpProxy.php';
+require_once 'Exception/ACSUtilException.php';
+require_once 'Exception/InvalidOperation.php';
 
 /*
  * @copyright  Copyright (c) 2010, Persistent Systems Limited (http://www.persistentsys.com)

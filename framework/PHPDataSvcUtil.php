@@ -126,7 +126,7 @@ class PHPSvcUtil
 
         $proc->transformToURI($this->_metadataDoc,
                               $this->_options['/out_dir'] .
-                              "\\" . $this->_getFileName());
+                              "/" . $this->_getFileName());
     }
 
     /**

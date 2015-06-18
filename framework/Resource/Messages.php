@@ -75,7 +75,7 @@ class Resource
     const NoLoadWithUnknownProperty = 'The context cannot load the related collection or reference to the unknown property - ';
     const AttachLocationFailedDescRetrieval = 'InternalError: AttachLocation Failed to retrieve the descriptor';
     const UnexpectdEntityState = 'Unexpected Entity State while trying to generate changeset body for resource';
-    const InvalidEntityClassName = 'Failed to find entity class with name -';
+    const InvalidEntityClassName = 'Failed to find entity class with name - ';
     const InvalidExecuteArg = 'Execute API receives only uri or DataServiceQueryContinuation';
     const NoEmptyQueryOption = 'Error in DataService Query: Can\'t add empty Query option';
     const ReservedCharNotAllowed = 'Error in DataService Query: Can\'t add query option because it begins with reserved character \'$\' - ';
@@ -95,10 +95,11 @@ class Resource
     const ExpectedOpenBraceNotFound = 'Expected Open brace is not found in the url';
     const XMLWithoutFeedorEntry = 'XML without feed or entry node, which is not valid ATOMPub XML';
     //definition for data service specific headers
-    const MaxDataServiceVersion = '2.0';
+    const MaxDataServiceVersion = '3.0';
     const DefaultDataServiceVersion = '1.0';
     const DataServiceVersion_1 = '1.0';
     const DataServiceVersion_2 = '2.0';
+    const DataServiceVersion_3 = '3.0';
     const USER_AGENT = 'OData Service';
     //definition of possible Accept and Content-Types headers
     const Accept_ATOM = 'application/atom+xml,application/xml';

@@ -52,7 +52,7 @@ class HttpBatchRequest
         $requestHeaders['Accept'] = 'application/atom+xml,application/xml';
         $requestHeaders['Content-Type'] = "multipart/mixed; boundary=" . $batchBoundary;
         $requestHeaders['DataServiceVersion'] = Resource::DataServiceVersion_1;
-        $requestHeaders['MaxDataServiceVersion'] = Resource::DataServiceVersion_2;
+        $requestHeaders['MaxDataServiceVersion'] = Resource::DataServiceVersion_3;
         $this->_httpRequest = new HttpRequest('POST', $url, $credential, $proxy,
                                               $requestHeaders, $batchRequestBody,
                                               $credentialsInHeaders);

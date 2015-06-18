@@ -603,9 +603,9 @@ class ObjectContext
                                             'GET',
                                             false,
                                             'application/atom+xml,application/xml',
-                                            Resource::DataServiceVersion_2);
+                                            Resource::DataServiceVersion_3);
         $queryResponse = $this->ExecuteAndProcessResult($httpRequest,
-                                                        Resource::DataServiceVersion_2);
+                                                        Resource::DataServiceVersion_3);
         $property->setValue($sourceObject, $queryResponse->Result);
         return $queryResponse;
     }
@@ -658,7 +658,7 @@ class ObjectContext
            (strpos($queryComponents->Uri, '$skiptoken') !== FALSE)||
            (strpos($queryComponents->Uri, '$select') !== FALSE))
         {
-            $requestVersion = Resource::DataServiceVersion_2;
+            $requestVersion = Resource::DataServiceVersion_3;
         }
 
         $httpRequest = $this->CreateRequest($queryComponents->Uri,
@@ -667,7 +667,7 @@ class ObjectContext
                                             'application/atom+xml,application/xml',
                                             $requestVersion);
         return $this->ExecuteAndProcessResult($httpRequest,
-                                              Resource::DataServiceVersion_2);
+                                              Resource::DataServiceVersion_3);
     }
 
     /**
@@ -1400,13 +1400,13 @@ class ObjectContext
                                              HttpVerb::GET,
                                              true,
                                              Resource::Content_Type_ATOM,
-                                             Resource::DataServiceVersion_2);
+                                             Resource::DataServiceVersion_3);
         $httpRequest->ApplyHeaders($args1->getHeaders());
 
         $isError = false;
         $innerException = '';
         $httpResponse = $this->ExecuteAndReturnResponse($httpRequest,
-                                                    Resource::DataServiceVersion_2,
+                                                    Resource::DataServiceVersion_3,
                                                     $isError,
                                                     $innerException);
 
@@ -1503,7 +1503,7 @@ class ObjectContext
                                                 'application/atom+xml,application/xml';
         $headers[HttpRequestHeader::AcceptCharset] = 'UTF-8';
         $headers['DataServiceVersion'] = $dataServiceVersion;
-        $headers['MaxDataServiceVersion'] = Resource::DataServiceVersion_2;
+        $headers['MaxDataServiceVersion'] = Resource::DataServiceVersion_3;
 
         if($httpVerb !=  HttpVerb::GET)
         {

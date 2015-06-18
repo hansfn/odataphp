@@ -314,11 +314,11 @@ class DataServiceQuery
                                                      HttpVerb::GET,
                                                      true,
                                                      'application/atom+xml,application/xml',
-                                                     Resource::DataServiceVersion_2);
+                                                     Resource::DataServiceVersion_3);
        $isError = false;
        $innerException = '';
        $response = $this->_context->ExecuteAndReturnResponse($httpRequest,
-                                                             Resource::DataServiceVersion_2,
+                                                             Resource::DataServiceVersion_3,
                                                              $isError,
                                                              $innerException);
        if($isError)
@@ -355,7 +355,7 @@ class DataServiceQuery
           (strpos($query, '$skiptoken') !== FALSE)||
           (strpos($query, '$select') !== FALSE))
        {
-           $requestVersion = Resource::DataServiceVersion_2;
+           $requestVersion = Resource::DataServiceVersion_3;
        }
 
        $httpRequest = $this->_context->CreateRequest($query,
@@ -363,7 +363,7 @@ class DataServiceQuery
                                                      false,
                                                      'application/atom+xml,application/xml',
                                                      $requestVersion);
-       return $this->_context->ExecuteAndProcessResult($httpRequest, Resource::DataServiceVersion_2);
+       return $this->_context->ExecuteAndProcessResult($httpRequest, Resource::DataServiceVersion_3);
    }
 
    /**

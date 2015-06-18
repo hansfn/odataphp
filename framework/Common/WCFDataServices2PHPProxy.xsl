@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
     xmlns:schema_1_0="http://schemas.microsoft.com/ado/2006/04/edm"
     xmlns:schema_1_1="http://schemas.microsoft.com/ado/2007/05/edm"
-    xmlns:schema_1_2="http://schemas.microsoft.com/ado/2008/09/edm"
+    xmlns:schema_1_2="http://schemas.microsoft.com/ado/2008/01/edm"
+    xmlns:schema_2_0="http://schemas.microsoft.com/ado/2008/09/edm"
+    xmlns:schema_3_0="http://schemas.microsoft.com/ado/2009/11/edm"
     xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
 
   <xsl:output method="text"/>
@@ -43,32 +45,31 @@
     * Defines default OData Service URL for this proxy class
     */
     define("DEFAULT_ODATA_SERVICE_URL", "<xsl:value-of select="$DefaultServiceURI"/>");
-    <xsl:apply-templates select="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema | /edmx:Edmx/edmx:DataServices/schema_1_2:Schema"/>
+    <xsl:apply-templates select="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema | /edmx:Edmx/edmx:DataServices/schema_1_2:Schema | /edmx:Edmx/edmx:DataServices/schema_2_0:Schema | /edmx:Edmx/edmx:DataServices/schema_3_0:Schema"/>
 ?&gt;
   </xsl:template>
 
-  <xsl:template match="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema | /edmx:Edmx/edmx:DataServices/schema_1_2:Schema">
-    <xsl:apply-templates select="schema_1_0:EntityContainer | schema_1_1:EntityContainer | schema_1_2:EntityContainer"/>
-    <xsl:for-each select="schema_1_0:EntityType | schema_1_1:EntityType | schema_1_2:EntityType">
+  <xsl:template match="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema | /edmx:Edmx/edmx:DataServices/schema_1_2:Schema | /edmx:Edmx/edmx:DataServices/schema_2_0:Schema | /edmx:Edmx/edmx:DataServices/schema_3_0:Schema">
+    <xsl:apply-templates select="schema_1_0:EntityContainer | schema_1_1:EntityContainer | schema_1_2:EntityContainer | schema_2_0:EntityContainer | schema_3_0:EntityContainer"/>
+    <xsl:for-each select="schema_1_0:EntityType | schema_1_1:EntityType | schema_1_2:EntityType | schema_2_0:EntityType | schema_3_0:EntityType">
       <xsl:apply-templates select="."/>
     </xsl:for-each>
-    <xsl:for-each select="schema_1_0:ComplexType | schema_1_1:ComplexType | schema_1_2:ComplexType">
+    <xsl:for-each select="schema_1_0:ComplexType | schema_1_1:ComplexType | schema_1_2:ComplexType | schema_2_0:ComplexType | schema_3_0:ComplexType">
       <xsl:apply-templates select="."/>
     </xsl:for-each>
   </xsl:template>
 
   <!-- Generate container class -->
-  <xsl:template match="schema_1_0:EntityContainer | schema_1_1:EntityContainer | schema_1_2:EntityContainer">
+  <xsl:template match="schema_1_0:EntityContainer | schema_1_1:EntityContainer | schema_1_2:EntityContainer | schema_2_0:EntityContainer | schema_3_0:EntityContainer">
     <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
     <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
-    <xsl:variable name="service_namespace_1" select="concat(//schema_1_0:EntityType/../@Namespace, //schema_1_1:EntityType/../@Namespace)" />
-    <xsl:variable name="service_namespace" select="concat($service_namespace_1, //schema_1_2:EntityType/../@Namespace)" />
+    <xsl:variable name="service_namespace" select="concat(//schema_1_0:EntityType/../@Namespace, //schema_1_1:EntityType/../@Namespace, //schema_1_2:EntityType/../@Namespace, //schema_2_0:EntityType/../@Namespace, //schema_3_0:EntityType/../@Namespace)" />
    /**
     * Container class <xsl:value-of select="@Name"/>, Namespace: <xsl:value-of select="$service_namespace"/>
     */
     class <xsl:value-of select="@Name"/> extends ObjectContext
     {
-    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
         protected $_<xsl:value-of select="@Name"/>;</xsl:for-each>
         
        /**
@@ -88,28 +89,28 @@
 
             $this->_baseURI = $uri;
             parent::__construct($this->_baseURI);
-            $this->_entities = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+            $this->_entities = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
                                 "<xsl:value-of select="@Name"/>"<xsl:if test="position() != last()">,</xsl:if>
                      </xsl:for-each>);
-            $this->_entitySet2Type = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+            $this->_entitySet2Type = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
                                             "<xsl:value-of select="translate(@Name, $uppercase, $smallcase)" />" =&gt; "<xsl:value-of select="substring-after(@EntityType, concat($service_namespace, '.'))"/>"<xsl:if test="position() != last()">, </xsl:if>
                                             </xsl:for-each>);
-            $this->_entityType2Set = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+            $this->_entityType2Set = array(<xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
                                             "<xsl:value-of select="translate(substring-after(@EntityType, concat($service_namespace, '.')), $uppercase, $smallcase)" />" =&gt; "<xsl:value-of select="@Name"/>"<xsl:if test="position() != last()">, </xsl:if>
                                             </xsl:for-each>);
 
-            $this->_association = array(<xsl:for-each select="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema/schema_1_0:Association | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema/schema_1_1:Association">
-                                         "<xsl:value-of select="@Name"/>" =&gt; array(<xsl:for-each select="schema_1_0:End | schema_1_1:End">
+            $this->_association = array(<xsl:for-each select="/edmx:Edmx/edmx:DataServices/schema_1_0:Schema/schema_1_0:Association | /edmx:Edmx/edmx:DataServices/schema_1_1:Schema/schema_1_1:Association | /edmx:Edmx/edmx:DataServices/schema_1_2:Schema/schema_1_2:Association | /edmx:Edmx/edmx:DataServices/schema_2_0:Schema/schema_2_0:Association | /edmx:Edmx/edmx:DataServices/schema_3_0:Schema/schema_3_0:Association">
+                                         "<xsl:value-of select="@Name"/>" =&gt; array(<xsl:for-each select="schema_1_0:End | schema_1_1:End | schema_1_2:End | schema_2_0:End | schema_3_0:End">
                                                                          "<xsl:value-of select="@Role"/>" =&gt; "<xsl:value-of select="@Multiplicity"/>" <xsl:if test="position() != last()">,</xsl:if>
                                                                       </xsl:for-each>)<xsl:if test="position() != last()">, </xsl:if>
                         </xsl:for-each>);
 
-    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
             $this-&gt;_<xsl:value-of select="@Name"/> = new DataServiceQuery('/'.'<xsl:value-of select="@Name"/>', $this);</xsl:for-each>
 
         }
 
-    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
         /**
          * Function returns DataServiceQuery reference for
          * the entityset <xsl:value-of select="@Name"/>
@@ -124,7 +125,7 @@
        /**
         * Functions for adding object to the entityset/collection
         */
-    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet">
+    <xsl:for-each select="schema_1_0:EntitySet | schema_1_1:EntitySet | schema_1_2:EntitySet | schema_2_0:EntitySet | schema_3_0:EntitySet">
        /**
         * Add <xsl:value-of select="@Name"/>
         * @param <xsl:value-of select="@Name"/> $object
@@ -145,13 +146,12 @@
     }
   </xsl:template>
 
-  <xsl:template match="schema_1_0:EntityType |schema_1_1:EntityType |schema_1_2:EntityType">
-    <xsl:variable name="service_namespace_1" select="concat(//schema_1_0:EntityType/../@Namespace, //schema_1_1:EntityType/../@Namespace)" />
-    <xsl:variable name="service_namespace" select="concat($service_namespace_1, //schema_1_2:EntityType/../@Namespace)" />
+  <xsl:template match="schema_1_0:EntityType | schema_1_1:EntityType | schema_1_2:EntityType | schema_2_0:EntityType | schema_3_0:EntityType">
+    <xsl:variable name="service_namespace" select="concat(//schema_1_0:EntityType/../@Namespace, //schema_1_1:EntityType/../@Namespace, //schema_1_2:EntityType/../@Namespace, //schema_2_0:EntityType/../@Namespace, //schema_3_0:EntityType/../@Namespace)" />
    /**
     * @class:<xsl:value-of select="@Name"/>
-    * @type:EntityType<xsl:for-each select="schema_1_0:Key | schema_1_1:Key | schema_1_2:Key">
-      <xsl:for-each select="schema_1_0:PropertyRef | schema_1_1:PropertyRef | schema_1_2:PropertyRef">
+    * @type:EntityType<xsl:for-each select="schema_1_0:Key | schema_1_1:Key | schema_1_2:Key | schema_2_0:Key | schema_3_0:Key">
+      <xsl:for-each select="schema_1_0:PropertyRef | schema_1_1:PropertyRef | schema_1_2:PropertyRef | schema_2_0:PropertyRef | schema_3_0:PropertyRef">
     * @key:<xsl:value-of select="@Name"/>
       </xsl:for-each>
     </xsl:for-each>
@@ -169,7 +169,7 @@
         protected $_relLinks  = array();
         protected $_baseURI;
 
-    <xsl:for-each select="schema_1_0:Property | schema_1_1:Property | schema_1_2:Property">
+    <xsl:for-each select="schema_1_0:Property | schema_1_1:Property | schema_1_2:Property | schema_2_0:Property | schema_3_0:Property">
        /**
         * @Type:EntityProperty<xsl:if test="@Nullable = 'false'">
         * NotNullable</xsl:if>
@@ -187,7 +187,7 @@
         */
         public $<xsl:value-of select="@Name"/>;
     </xsl:for-each>
-    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty">
+    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty | schema_2_0:NavigationProperty | schema_3_0:NavigationProperty">
        /**
         * @Type:NavigationProperty
         * @Relationship:<xsl:value-of select="substring-after(@Relationship, concat($service_namespace, '.'))"/>
@@ -199,15 +199,15 @@
 
        /**
         * Function to create an instance of <xsl:value-of select="@Name"/>
-    <xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false']">
+    <xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false'] | schema_2_0:Property[@Nullable = 'false'] | schema_3_0:Property[@Nullable = 'false']">
         * @param <xsl:value-of select="@Type"/> $<xsl:value-of select="@Name"/>
     </xsl:for-each>
         */
-        public static function Create<xsl:value-of select="@Name"/>(<xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false']">
+        public static function Create<xsl:value-of select="@Name"/>(<xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false'] | schema_2_0:Property[@Nullable = 'false'] | schema_3_0:Property[@Nullable = 'false']">
             $<xsl:value-of select="@Name"/><xsl:if test="position() != last()">, </xsl:if>
     </xsl:for-each>)
         {   <xsl:variable name="ClassName" select="@Name"/>
-            $<xsl:value-of select="@Name"/> = new <xsl:value-of select="@Name"/>();<xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false']">
+            $<xsl:value-of select="@Name"/> = new <xsl:value-of select="@Name"/>();<xsl:for-each select="schema_1_0:Property[@Nullable = 'false'] | schema_1_1:Property[@Nullable = 'false'] | schema_1_2:Property[@Nullable = 'false'] | schema_2_0:Property[@Nullable = 'false'] | schema_3_0:Property[@Nullable = 'false']">
             $<xsl:value-of select="$ClassName"/>-><xsl:value-of select="@Name"/> = $<xsl:value-of select="@Name"/>;</xsl:for-each>
             return $<xsl:value-of select="@Name"/>;
         }
@@ -219,10 +219,10 @@
         {
             $this->_objectID = Guid::NewGuid();
             $this->_baseURI = $uri;
-    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty">
+    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty | schema_2_0:NavigationProperty | schema_3_0:NavigationProperty">
             $this->_entityMap['<xsl:value-of select="@Name"/>'] = '<xsl:value-of select="@ToRole"/>';</xsl:for-each>
-    <xsl:apply-templates select="schema_1_0:Key | schema_1_1:Key"/>
-    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty">
+    <xsl:apply-templates select="schema_1_0:Key | schema_1_1:Key | schema_1_2:Key | schema_2_0:Key | schema_3_0:Key"/>
+    <xsl:for-each select="schema_1_0:NavigationProperty | schema_1_1:NavigationProperty | schema_1_2:NavigationProperty | schema_2_0:NavigationProperty | schema_3_0:NavigationProperty">
             $this-><xsl:value-of select="@Name"/> = array();</xsl:for-each>
         }
 
@@ -280,16 +280,14 @@
     }
   </xsl:template>
 
-  <xsl:template match="schema_1_0:ComplexType |schema_1_1:ComplexType |schema_1_2:ComplexType">
-    <xsl:variable name="service_namespace_1" select="concat(//schema_1_0:ComplexType/../@Namespace, //schema_1_1:ComplexType/../@Namespace)" />
-    <xsl:variable name="service_namespace" select="concat($service_namespace_1, //schema_1_2:ComplexType/../@Namespace)" />
+  <xsl:template match="schema_1_0:ComplexType | schema_1_1:ComplexType | schema_1_2:ComplexType | schema_2_0:ComplexType | schema_3_0:ComplexType">
     /**
     * @class:<xsl:value-of select="@Name"/>
     * @type:ComplexType
     */
     class <xsl:value-of select="@Name"/>
     {
-    <xsl:for-each select="schema_1_0:Property | schema_1_1:Property | schema_1_2:Property">
+    <xsl:for-each select="schema_1_0:Property | schema_1_1:Property | schema_1_2:Property | schema_2_0:Property | schema_3_0:Property">
        /**
         * @Type:EntityProperty<xsl:if test="@Nullable = 'false'">
         * NotNullable</xsl:if>
@@ -303,8 +301,8 @@
     }
   </xsl:template>
 
-  <xsl:template match="schema_1_0:Key | schema_1_1:Key | schema_1_2:Key">
-    <xsl:for-each select="schema_1_0:PropertyRef | schema_1_1:PropertyRef | schema_1_2:PropertyRef">
+  <xsl:template match="schema_1_0:Key | schema_1_1:Key | schema_1_2:Key | schema_2_0:Key | schema_3_0:Key">
+    <xsl:for-each select="schema_1_0:PropertyRef | schema_1_1:PropertyRef | schema_1_2:PropertyRef | schema_2_0:PropertyRef | schema_3_0:PropertyRef">
             $this->_entityKey[] = '<xsl:value-of select="@Name"/>';</xsl:for-each>
   </xsl:template>
 </xsl:stylesheet>

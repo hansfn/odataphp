@@ -23,7 +23,7 @@ The instructions below are written for Debian (verified on Debian Jessie / 8.1).
 2. Copy the all files and folders in the SDK to the folder created above. 
    In particular, the folder ```/usr/local/lib/php5/odataphp/framework``` should have the 
    content seen at bottom of this file (in the directory structure section).
-3. Add the path to the framework folder (created in step 1/2) to the 'include_path' directive in php.ini e.g.
+3. Add the path to the framework folder (created in step 1/2) to the include_path directive in php.ini e.g.
 
         include_path = ".:/usr/local/lib/php5/odataphp/framework"
 4. Create a variable called 'ODataphp_path' in the php.ini file and set it to the
@@ -34,7 +34,7 @@ The instructions below are written for Debian (verified on Debian Jessie / 8.1).
         ; OData SDK for PHP Library Path
         ODataphp_path = "/usr/local/lib/php5/odataphp/framework"
 5. Make sure you that the curl, xml and xsl modules are installed and enabled in PHP. 
-   In Deian the xml module is always included in PHP. The curl and xsl modules can be 
+   In Debian the xml module is always included in PHP. The curl and xsl modules can be 
    installed (and enabled) using apt-get as follows,
 
         apt-get install php5-curl php5-xsl

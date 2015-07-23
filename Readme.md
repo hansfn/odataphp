@@ -17,7 +17,7 @@ Installation Instructions
 
 The assumption is that PHP is already installed and configured on the machine where the OData SDK for PHP is installed.
 The SDK does not have any dependency on the host OS so it can run on Windows, Linux or Mac OSX machines.
-The instructions below are written for Debian (verified for on Jessie / 8.1).
+The instructions below are written for Debian (verified on Debian Jessie / 8.1).
 
 1. Create a folder that should contian the SDK, for instance, ```/usr/local/lib/php5/odataphp```.
 2. Copy the all files and folders in the SDK to the folder created above. 
@@ -25,26 +25,20 @@ The instructions below are written for Debian (verified for on Jessie / 8.1).
    content seen at bottom of this file (in the directory structure section).
 3. Add the path to the framework folder (created in step 1/2) to the 'include_path' directive in php.ini e.g.
 
-        ```
         include_path = ".:/usr/local/lib/php5/odataphp/framework"
-        ```
 4. Create a variable called 'ODataphp_path' in the php.ini file and set it to the
    path where the OData SDK for PHP was installed (step 1).
    Open php.ini and search for 'Paths and Directories' section. Just below the definition 
    of 'include_path' directive, add the following two lines:
 
-        ```
         ; OData SDK for PHP Library Path
         ODataphp_path = "/usr/local/lib/php5/odataphp/framework"
-        ```
 5. Make sure you that the curl, xml and xsl modules are installed and enabled in PHP. 
    In Deian the xml module is always included in PHP. The curl and xsl modules can be 
    installed (and enabled) using apt-get as follows,
 
-        ```
         apt-get install php5-curl php5-xsl
-        ```
-       
+
 Usage Instructions
 ==================
 After the installation is completed, you can generate the proxy class for any OData Service

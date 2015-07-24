@@ -162,7 +162,7 @@
       * @FC_KeepInContent:<xsl:value-of select="@m:FC_KeepInContent"/>
     </xsl:if>
     */
-    class <xsl:value-of select="@Name"/> extends Object
+    class <xsl:value-of select="@Name"/> extends <xsl:choose><xsl:when test="@BaseType"><xsl:value-of select="@BaseType"/></xsl:when><xsl:otherwise>Object</xsl:otherwise></xsl:choose>
     {
         protected $_entityMap = array();
         protected $_entityKey = array();

@@ -33,7 +33,7 @@ class ClientType
      * @param <string> $type
      * Constructor
      */
-    public function ClientType($type)
+    public function __construct($type)
     {
         $this->_attributes = array();
         $this->_properties =array();
@@ -371,7 +371,7 @@ class Property
      * @param <array<key => value>> $attributes
      * Constructor
      */
-    public function Property($name, $attributes)
+    public function __construct($name, $attributes)
     {
         $this->_isSyndication = $this->_hasEPM = false;
         $this->_name = $name;

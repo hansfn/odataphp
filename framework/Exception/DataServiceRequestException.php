@@ -32,7 +32,7 @@ class DataServiceRequestException extends Exception
      *
      * @param QueryOperationResponse $response
      */
-    public function DataServiceRequestException($response)
+    public function __construct($response)
     {
 	$this->Response = $response;
     }

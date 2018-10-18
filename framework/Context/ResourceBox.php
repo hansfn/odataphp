@@ -118,7 +118,7 @@ class ResourceBox extends Entity
      *@param string $editLink
      *@param Object $resource
      */
-    public function ResourceBox($identity, $editLink, $resource)
+    public function __construct($identity, $editLink, $resource)
     {
         $this->Identity = $identity;
         $this->EditLink = $editLink;

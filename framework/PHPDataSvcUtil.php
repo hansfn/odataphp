@@ -15,6 +15,8 @@
    limitations under the License.
  */
 
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
+
 require_once 'WebUtil/Microsoft_Http_Response.php';
 require_once 'WebUtil/HttpResponse.php';
 require_once 'Common/ACSUtil.php';
@@ -25,7 +27,19 @@ require_once 'Common/ACSUtil.php';
  */
 try
 {
-    $util = new PHPSvcUtil($argv);
+    if (isset($argv)) 
+    {
+        $args = $argv;
+    } 
+    else 
+    {
+        $args = ['scriptname'];
+    }
+    if (count($args) == 1) 
+    {
+        $args[] = '/config=' . dirname(__FILE__) . '/settings.ini'; // look for settings file if no params
+    }
+    $util = new PHPSvcUtil($args);
     $util->generateProxy();
     $options = $util->getOptions();
     echo "\n" . 'Done: OData Service Proxy File \'' . $options['/out_filename'] .
@@ -73,7 +87,7 @@ class PHPSvcUtil
      *
      * @param array $options
      */
-    public function PHPSvcUtil($options)
+    public function __construct($options)
     {
         unset($options[0]);
         $this->_cmdArgs = $options;
@@ -101,7 +115,8 @@ class PHPSvcUtil
 
         if (strlen($xsl_path) == 0)
         {
-            throw new Exception(self::$_messages['ServicePath_Not_Set']);
+            $xsl_path = dirname(__FILE__);
+//			throw new Exception(self::$_messages['ServicePath_Not_Set']);
         }
 
         $xsl_path = $xsl_path . "/" . "Common/WCFDataServices2PHPProxy.xsl";
@@ -144,6 +159,7 @@ class PHPSvcUtil
         curl_setopt($curlHandle, CURLOPT_HEADER, true);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, false);
         
         if(isset($this->_options['/auth']))
         {
@@ -210,7 +226,7 @@ class PHPSvcUtil
         if (!$httpRawResponse)
         {
             throw new Exception(self::$_messages['Request_Error'] .
-                                 curl_error($curlHandle));
+                                 curl_error($curlHandle).'<pre>'."\n".print_r(curl_getinfo($curlHandle),true).'</pre>');
         }
 
         $httpResponse = HttpResponse::fromString($httpRawResponse);

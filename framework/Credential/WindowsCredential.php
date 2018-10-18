@@ -32,7 +32,7 @@ class WindowsCredential extends CredentialBase
      * @param string $userName The doamin and username in the form domain/username
      * @return string  $password The Password
      */
-    public function WindowsCredential($userName, $password)
+    public function __construct($userName, $password)
     {
         $this->_userName = $userName;
         $this->_password = $password;

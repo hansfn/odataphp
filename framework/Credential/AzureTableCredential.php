@@ -35,7 +35,7 @@ class AzureTableCredential extends CredentialBase
      * @param string $userName The user Name
      * @return string  $password The Password
      */
-    public function AzureTableCredential($accountName, $accountKey, $usePathStyleUri = false)
+    public function __construct($accountName, $accountKey, $usePathStyleUri = false)
     {
         $this->_azureTableUtil = new AzureTableUtil($accountName, $accountKey,
                                                     $usePathStyleUri = false);

@@ -100,7 +100,7 @@ class HttpRequest
      * @param string $postBody
      * @param boolean $credentialsInHeader
      */
-    public function HttpRequest($httpMethod, $url, $credential, $proxy,
+    public function __construct($httpMethod, $url, $credential, $proxy,
                                 $headers = array(), $postBody = null,
                                 $credentialsInHeader = false)
     {

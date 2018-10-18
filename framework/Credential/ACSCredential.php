@@ -35,7 +35,7 @@ class ACSCredential extends CredentialBase
      * @param <string> $userName The user Name
      * @return <string>  $password The Password
      */
-    public function ACSCredential($service_namespace, $wrap_name,
+    public function __construct($service_namespace, $wrap_name,
                             $wrap_password, $wrap_scope,
                             $claims = array(), $proxy = null)
     {

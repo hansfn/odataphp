@@ -39,7 +39,7 @@ class DataServiceSaveStream
      * @param Stream $stream
      * @param DataServiceRequestArgs $args
      */
-    public function DataServiceSaveStream($stream, $args)
+    public function __construct($stream, $args)
     {
         $this->_stream = $stream;
         $this->_args = $args;

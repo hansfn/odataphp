@@ -325,7 +325,7 @@ class Pair
      * @param <Object> $entry1
      * @param <Object> $entry2
      */
-    public function Pair($entry1, $entry2)
+    public function __construct($entry1, $entry2)
     {
         $this->entry1 = $entry1;
         $this->entry2 = $entry2;

@@ -31,7 +31,7 @@ class DataServiceStreamResponse
      *
      * @param HttpResponse $httpResponse
      */
-    public function DataServiceStreamResponse($httpResponse)
+    public function __construct($httpResponse)
     {
         if(is_object($httpResponse) &&
            is_a($httpResponse, 'Microsoft_Http_Response'))

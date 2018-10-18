@@ -50,7 +50,7 @@ class OperationResponse
      * @param string $error
      * @param int $statusCode
      */
-    public function OperationResponse($headers, $error, $statusCode)
+    public function __construct($headers, $error, $statusCode)
     {
         $this->_headers = $headers;
         $this->_innerException = $error;

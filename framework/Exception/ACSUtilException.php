@@ -45,7 +45,7 @@ class ACSUtilException extends Exception
      * @param string $errorStr Error String as plain string or Atom format
      * @param string $content_type
      */
-    public function ACSUtilException($errorStr, $headers = array(), $statusCode = '')
+    public function __construct($errorStr, $headers = array(), $statusCode = '')
     {
         $this->_error = $errorStr;
         $this->_headers = $headers;

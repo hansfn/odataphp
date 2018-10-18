@@ -41,7 +41,7 @@ class InvalidOperation extends Exception
      * @param string $error
      * @param string $detailedError
      */
-    public function InvalidOperation($error, $detailedError = null)
+    public function __construct($error, $detailedError = null)
     {
         $this->_error = $error;
         $this->_detailedError = $detailedError;

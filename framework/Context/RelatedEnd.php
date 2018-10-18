@@ -75,7 +75,7 @@ class RelatedEnd extends Entity
      * @param string $sourceProperty
      * @param Object $targetResource
      */
-    public function RelatedEnd($sourceResource, $sourceProperty, $targetResource)
+    public function __construct($sourceResource, $sourceProperty, $targetResource)
     {
         $this->_sourceResource = $sourceResource;
         $this->_sourceProperty = $sourceProperty;

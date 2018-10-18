@@ -39,7 +39,7 @@ class ContentStream
      * @param <text/binary> $stream
      * @param <boolean> $isKnownMemoryStream
      */
-    public function ContentStream($stream, $isKnownMemoryStream)
+    public function __construct($stream, $isKnownMemoryStream)
     {
         $this->_stream = $stream;
         $this->_isKnownMemoryStream = $isKnownMemoryStream;

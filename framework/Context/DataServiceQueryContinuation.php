@@ -33,7 +33,7 @@ class DataServiceQueryContinuation
      *
      * @param Uri $nextLinkUri
      */
-    public function DataServiceQueryContinuation($nextLinkUri)
+    public function __construct($nextLinkUri)
     {
         $this->_nextLinkUri = $nextLinkUri;
     }

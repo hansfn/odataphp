@@ -88,7 +88,7 @@ class DataServiceQuery
     * @param <type> $entitySetUrl Partial Url pointing to entity Set in OData Service
     * @param <type> $context The DataService Context
     */
-   public function DataServiceQuery($entitySetUrl, $context)
+   public function __construct($entitySetUrl, $context)
    {
        //Client is allowed to pass entitySet name in either
        //'EntitySetName' or '/EntitySetName' format (with or without slash)

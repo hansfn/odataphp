@@ -56,7 +56,7 @@ class HttpBatchResponse
      * @return string No Return value
      * Construct a HttpBatchResponse object
      */
-    public function HttpBatchResponse($httpResponses, $rawHttpBatchResponse,
+    public function __construct($httpResponses, $rawHttpBatchResponse,
                                       $changesetBoundary)
     {
         $this->_httpResponses = $httpResponses;

@@ -49,7 +49,7 @@ class WCFDataServicesEntity
         }
         if (!empty($userName) && !(empty($password)))
         {
-            $this->_proxyObject->Credential = new Credential($userName, $password);
+            $this->_proxyObject->Credential = new WindowsCredential($userName, $password);
         }
     }
 

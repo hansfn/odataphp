@@ -43,7 +43,7 @@ class WCFDataServicesEditor
      * @param string $userName user name for authenticating WCF Data Service.
      * @param string $password password for authenticating WCF Data Service.
      */
-    public function WCFDataServicesEditor($containerScriptName, $containerName, $enablePaging = false, $pageSize = 5, $serviceUri = "",
+    public function __construct($containerScriptName, $containerName, $enablePaging = false, $pageSize = 5, $serviceUri = "",
         $http_proxy_host = "", $http_proxy_port = "", $userName = "", $password = "")
     {
         $this->_containerScriptName = $containerScriptName;

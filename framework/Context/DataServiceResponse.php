@@ -33,7 +33,7 @@ class DataServiceResponse
      * @param OperationResponse[] $responses
      * @param boolean $batchResponse
      */
-    public function DataServiceResponse($headers, $statusCode, $responses, $batchResponse)
+    public function __construct($headers, $statusCode, $responses, $batchResponse)
     {
         $this->_headers = $headers;
         $this->_statusCode = $statusCode;

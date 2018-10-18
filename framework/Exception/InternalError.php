@@ -33,7 +33,7 @@ class InternalError extends Exception
      * @param string $error
      * @param string $detailedError
      */
-    public function InternalError($error)
+    public function __construct($error)
     {
         $this->_error = $error;
         $this->_detailedError = $detailedError;

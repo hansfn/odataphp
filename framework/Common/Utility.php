@@ -307,7 +307,7 @@ class Utility
      * This function will return a mapping table for
      * conversion of special characters in html to json
      */
-    function get_html_json_translation_table()
+    static function get_html_json_translation_table()
     {
         $allEntities = Utility::get_html_translation_table_();
         $specialEntities = get_html_translation_table(HTML_SPECIALCHARS, ENT_NOQUOTES);
@@ -328,7 +328,7 @@ class Utility
      * and also add some special character which are not in the
      * default translation table.
      */
-    function get_html_translation_table_()
+    static function get_html_translation_table_()
     {
         $trans = get_html_translation_table(HTML_ENTITIES, ENT_NOQUOTES);
         $trans[chr(128)] = '&euro;';
@@ -365,7 +365,7 @@ class Utility
      *@param <string> $value
      *Merge $value with $string and append a newline at the end
      */
-    public function WriteLine(&$string, $value)
+    public static function WriteLine(&$string, $value)
     {
         if($value != null)
         {
@@ -374,7 +374,7 @@ class Utility
         $string = $string . "\n";
     }
 
-    public function GetPropertyType($property, &$notNullable)
+    public static function GetPropertyType($property, &$notNullable)
     {
         $type = "";
         $notNullable = false;

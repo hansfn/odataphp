@@ -73,7 +73,7 @@ class AzureTableUtil
      * @param <string> $accountKey
      * @param <uri> $usePathStyleUri
      */
-    public function AzureTableUtil($accountName, $accountKey, $usePathStyleUri = false)
+    public function __construct($accountName, $accountKey, $usePathStyleUri = false)
     {
         $this->_accountName = $accountName;
 	$this->_accountKey = base64_decode($accountKey);

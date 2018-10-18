@@ -53,7 +53,7 @@ class HttpProxy
      * @param <string> $username
      * @param <string> $password
      */
-    public function HttpProxy($address, $port, $username = null, $password = null)
+    public function __construct($address, $port, $username = null, $password = null)
     {
         $this->_address = $address;
         $this->_port = $port;

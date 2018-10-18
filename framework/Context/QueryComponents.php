@@ -39,7 +39,7 @@ class QueryComponents
      * @param Uri $uri
      * @param string $version
      */
-    public function QueryComponents($uri, $version)
+    public function __construct($uri, $version)
     {
         $this->Uri = $uri;
         $this->Version = $version;

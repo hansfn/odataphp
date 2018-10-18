@@ -48,7 +48,7 @@ class ACSUtil
      * @param $claims array of claims
      * @param <HttpProxy> $proxy
      */
-    public function ACSUtil($service_namespace, $wrap_name,
+    public function __construct($service_namespace, $wrap_name,
                             $wrap_password, $wrap_scope,
                             $claims = array(), $proxy = null)
     {

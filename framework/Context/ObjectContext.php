@@ -786,7 +786,7 @@ class ObjectContext
      */
     protected function IncrementChange($resourceBoxOrRelatedEnd)
     {
-        $resourceBoxOrRelatedEnd->ChangeOrder = ++$this->nextChange;
+        $resourceBoxOrRelatedEnd->ChangeOrder = ++$this->_nextChange;
     }
 
     /**

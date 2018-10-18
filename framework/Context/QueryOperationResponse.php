@@ -45,7 +45,7 @@ class QueryOperationResponse
      * @param int $statusCode
      * @param Uri $query
      */
-    public function QueryOperationResponse($headers,
+    public function __construct($headers,
                                            $innerException,
                                            $statusCode,
                                            $query)

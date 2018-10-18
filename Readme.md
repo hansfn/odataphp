@@ -1,28 +1,55 @@
 Introduction
 ============
 
-This is an updated version of the OData SDK for PHP (published on https://odataphp.codeplex.com/) 
-meant to work with OData version 3.0. The original version (dated Mar 15, 2010) only supported 
-version 1.x and 2.0. In addition this version is developed on Linux; no more Windows problems ;-)
+> The OData SDK for PHP enables PHP developers to access data services that 
+> use the OData protocol. Detailed information on the OData protocol and 
+> the other SDKs available can be found at https://www.odata.org/. 
+
+This is an updated version of the OData SDK for PHP meant to work with OData version 3.0. 
+The original version (dated Mar 15, 2010) only supported version 1.x and 2.0. 
+In addition this version is developed on Linux; no more Windows problems ;-)
+
+The SDK was originally published on Codeplex, and an 
+[archived version of the project is still available](https://archive.codeplex.com/?p=odataphp)).
 
 The motivation behind this work is to integrate data from Mediasite, a system used for video 
 recordings at many universities in Norway (and the rest of the World), in other PHP applications
 like Drupal.
 
-The work is indirectly sponsored by [Molde University College](http://www.himolde.no/) since 
-they pay my salary.
+The initial work was indirectly sponsored by [Molde University College](http://www.himolde.no/) 
+since they pay my salary.
+
+Features
+========
+
+This list is taken from the original project and not updated or verified:
+
+- Support for all new OData protocol features (Projections, Server-Side paging, Blobs, RowCounter and Customizable Feeds)
+- Support for Azure authentication
+- Better programming model with APIs for all Query Options
+- More command line options
+- Additional samples
+
+Try the toolkit using some of the OData Services available on the internet:
+
+- Services.odata.org: http://services.odata.org/OData/OData.svc/
 
 Installation Instructions
 =========================
+These instrcutions are for PHP 5, but should work for PHP 7 too.
 
 The assumption is that PHP is already installed and configured on the machine where the OData SDK for PHP is installed.
 The SDK does not have any dependency on the host OS so it can run on Windows, Linux or Mac OSX machines.
 The instructions below are written for Debian (verified on Debian Jessie / 8.1).
 
-1. Create a folder that should contian the SDK, for instance, ```/usr/local/lib/php5/odataphp```.
-2. Copy the all files and folders in the SDK to the folder created above. 
-   In particular, the folder ```/usr/local/lib/php5/odataphp/framework``` should have the 
-   content seen at bottom of this file (in the directory structure section).
+1. Get the source either by dowloading a [https://github.com/hansfn/odataphp/releases](release) or cloning from git. 
+   In the following we assume that the SDK is unpacked / cloned into ```/usr/local/lib/php5/odataphp```.
+   
+   Cloning from Git:
+   
+       mkdir -p /usr/local/lib/php5
+       cd /usr/local/lib/php5
+       git clone https://github.com/hansfn/odataphp.git
 3. Add the path to the framework folder (created in step 1/2) to the include_path directive in php.ini e.g.
 
         include_path = ".:/usr/local/lib/php5/odataphp/framework"

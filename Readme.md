@@ -7,10 +7,9 @@ Introduction
 
 This is an updated version of the OData SDK for PHP meant to work with OData version 3.0. 
 The original version (dated Mar 15, 2010) only supported version 1.x and 2.0. 
-In addition this version is developed on Linux; no more Windows problems ;-)
 
 The SDK was originally published on Codeplex, and an 
-[archived version of the project is still available](https://archive.codeplex.com/?p=odataphp)).
+[archived version of the project is still available](https://archive.codeplex.com/?p=odataphp).
 
 The motivation behind this work is to integrate data from Mediasite, a system used for video 
 recordings at many universities in Norway (and the rest of the World), in other PHP applications

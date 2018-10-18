@@ -41,7 +41,7 @@ The assumption is that PHP is already installed and configured on the machine wh
 The SDK does not have any dependency on the host OS so it can run on Windows, Linux or Mac OSX machines.
 The instructions below are written for Debian (verified on Debian Jessie / 8.1).
 
-1. Get the source either by dowloading a [https://github.com/hansfn/odataphp/releases](release) or cloning from git. 
+1. Get the source either by dowloading a [release](https://github.com/hansfn/odataphp/releases) or cloning from git. 
    In the following we assume that the SDK is unpacked / cloned into ```/usr/local/lib/php5/odataphp```.
    
    Cloning from Git:
@@ -49,7 +49,7 @@ The instructions below are written for Debian (verified on Debian Jessie / 8.1).
        mkdir -p /usr/local/lib/php5
        cd /usr/local/lib/php5
        git clone https://github.com/hansfn/odataphp.git
-3. Add the path to the framework folder (created in step 1/2) to the include_path directive in php.ini e.g.
+3. Add the path to the framework folder to the include_path directive in php.ini e.g.
 
         include_path = ".:/usr/local/lib/php5/odataphp/framework"
 4. Create a variable called 'ODataphp_path' in the php.ini file and set it to the

@@ -15,7 +15,7 @@
    limitations under the License.
  */
 
-require_once 'Interfaces/Object.php';
+require_once 'Interfaces/BaseObject.php';
 require_once 'Azure/TableEntry.php';
 require_once 'Azure/Tables.php';
 require_once 'Resource/Messages.php';

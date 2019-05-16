@@ -19,7 +19,7 @@
  * @copyright  Copyright (c) 2010, Persistent Systems Limited (http://www.persistentsys.com)
  * @license    http://odataphp.codeplex.com/license
  */
-class Tables extends Object
+class Tables extends BaseObject
 {
     protected $_baseURI;
     protected $_obectID;

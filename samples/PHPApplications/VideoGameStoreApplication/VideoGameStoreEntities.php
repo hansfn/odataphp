@@ -35,7 +35,7 @@
     * @type:EntityType
     * @key:ProductID
     */
-    class Accessory extends Object
+    class Accessory extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -154,7 +154,7 @@
     * @type:EntityType
     * @key:ProductID
     */
-    class Console extends Object
+    class Console extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -291,7 +291,7 @@
     * @type:EntityType
     * @key:CustomerID
     */
-    class Customer extends Object
+    class Customer extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -432,7 +432,7 @@
     * @type:EntityType
     * @key:ProductID
     */
-    class Game extends Object
+    class Game extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -609,7 +609,7 @@
     * @type:EntityType
     * @key:ProductID
     */
-    class Product extends Object
+    class Product extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -836,7 +836,7 @@
     * @type:EntityType
     * @key:ProductTypeID
     */
-    class ProductType extends Object
+    class ProductType extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -967,7 +967,7 @@
     * @type:EntityType
     * @key:PurchaseID
     */
-    class Purchase extends Object
+    class Purchase extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1102,7 +1102,7 @@
     * @type:EntityType
     * @key:PurchaseItemID
     */
-    class PurchaseItem extends Object
+    class PurchaseItem extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1249,7 +1249,7 @@
     * @type:EntityType
     * @key:SupplierID
     */
-    class Supplier extends Object
+    class Supplier extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1394,7 +1394,7 @@
     * @type:EntityType
     * @key:diagram_id
     */
-    class sysdiagrams extends Object
+    class sysdiagrams extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();

@@ -22,7 +22,7 @@
  * Base class for the classes whose instance needs to be stored in
  * Dictionary class (Common/Dictionary.php).
  */
-abstract class Object
+abstract class BaseObject
 {
     /**
      * To hold unique id (GUID).

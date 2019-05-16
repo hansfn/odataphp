@@ -38,7 +38,7 @@
     * @key:Language
     * @key:Format
     */
-    class TitleAudioFormat extends Object
+    class TitleAudioFormat extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -186,7 +186,7 @@
     * @type:EntityType
     * @key:Id
     */
-    class TitleAward extends Object
+    class TitleAward extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -343,7 +343,7 @@
     * @type:EntityType
     * @key:Id
     */
-    class Title extends Object
+    class Title extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -729,7 +729,7 @@
     * @key:DeliveryFormat
     * @key:Format
     */
-    class TitleScreenFormat extends Object
+    class TitleScreenFormat extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -864,7 +864,7 @@
     * @type:EntityType
     * @key:Name
     */
-    class Genre extends Object
+    class Genre extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -978,7 +978,7 @@
     * @type:EntityType
     * @key:Name
     */
-    class Language extends Object
+    class Language extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1092,7 +1092,7 @@
     * @type:EntityType
     * @key:Id
     */
-    class Person extends Object
+    class Person extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();

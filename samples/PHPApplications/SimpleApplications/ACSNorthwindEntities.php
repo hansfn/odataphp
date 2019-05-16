@@ -35,7 +35,7 @@
     * @type:EntityType
     * @key:CategoryID
     */
-    class Categories extends Object
+    class Categories extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -168,7 +168,7 @@
     * @type:EntityType
     * @key:CustomerTypeID
     */
-    class CustomerDemographics extends Object
+    class CustomerDemographics extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -285,7 +285,7 @@
     * @type:EntityType
     * @key:CustomerID
     */
-    class Customers extends Object
+    class Customers extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -488,7 +488,7 @@
     * @type:EntityType
     * @key:EmployeeID
     */
-    class Employees extends Object
+    class Employees extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -756,7 +756,7 @@
     * @key:OrderID
     * @key:ProductID
     */
-    class Order_Details extends Object
+    class Order_Details extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -914,7 +914,7 @@
     * @type:EntityType
     * @key:OrderID
     */
-    class Orders extends Object
+    class Orders extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1123,7 +1123,7 @@
     * @type:EntityType
     * @key:ProductID
     */
-    class Products extends Object
+    class Products extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1304,7 +1304,7 @@
     * @type:EntityType
     * @key:RegionID
     */
-    class Region extends Object
+    class Region extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1423,7 +1423,7 @@
     * @type:EntityType
     * @key:ShipperID
     */
-    class Shippers extends Object
+    class Shippers extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1550,7 +1550,7 @@
     * @type:EntityType
     * @key:SupplierID
     */
-    class Suppliers extends Object
+    class Suppliers extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
@@ -1749,7 +1749,7 @@
     * @type:EntityType
     * @key:TerritoryID
     */
-    class Territories extends Object
+    class Territories extends BaseObject
     {
         protected $_entityMap = array();
         protected $_entityKey = array();
